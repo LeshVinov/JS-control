@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./js/main.js" defer></script>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap" rel="stylesheet">
+    <title>HardWorkers</title>
+</head>
+<body>
+    <div class="container-name">
+        <form action="#" class="form-container">
+            <div class="form-container__bigger">
+                <div class="container">
+                    <div class="input-container">
+                        <input type="text" id="form-text__name" class="input-container__input">
+                        <label for="form-text__name" class="input-container__label">Имя</label>
+                    </div>
+                    <!-- /.input-container -->
+                    <div class="input-container">
+                        <input type="text" id="form-text__secname" class="input-container__input">
+                        <label for="form-text__secname" class="input-container__label">Фамилия</label>
+                    </div>
+                    <!-- /.input-container -->
+                    <div class="input-container">
+                        <input type="text" id="form-text__age" class="input-container__input">
+                        <label for="form-text__age" class="input-container__label">Возраст</label>
+                    </div>
+                    <!-- /.input-container -->
+                    <div class="input-container">
+                        <input type="checkbox" id="form-text__child" class="input-container__input input-container__child">
+                        <label for="form-text__child" class="input-container__label">Наличие детей</label>
+                    </div>
+                    <!-- /.input-container -->
+                </div>
+                <div class="container">
+                    <div class="input-container">
+                        <select name="role-select" class="input-container__select">
+                            <option value="" selected></option>
+                            <option value="Водитель">Водитель</option>
+                            <option value="Слесарь">Слесарь</option>
+                            <option value="Сантехник">Сантехник</option>
+                            <option value="Уборщик">Уборщик</option>
+                            <option value="Глиномес">Глиномес</option>
+                        </select>
+                        <label class="input-container__label">Должность</label>
+                    </div>
+                    <!-- /.input-container -->
+                    <div class="input-container">
+                        <input type="text" id="form-text__org" class="input-container__input">
+                        <label for="form-text__org" class="input-container__label">Организация</label>
+                    </div>
+                    <!-- /.input-container -->
+                    <div class="input-container">
+                        <input type="text" id="form-text__rank" class="input-container__input">
+                        <label for="form-text__rank" class="input-container__label">Разряд</label>
+                    </div>
+                    <!-- /.input-container -->
+                    <div class="input-container">
+                        <input type="date" id="form-text__date" class="input-container__input input-container__date">
+                        <label for="form-text__date" class="input-container__label">Дата принятия на работу</label>
+                    </div>
+                    <!-- /.input-container -->
+                </div>
+            </div>
+            <!-- /.form-container__bigger -->
+            <button class="form-submit__button">Отправить</button>
+        </form>
+        <!-- /.form-container -->
+    </div>
+    <!-- /.container-name -->
+    <div class="container-name__table">
+        <table class="output-table">
+            <tr class="output-string">
+                <td class="output-block output-block__title">Имя</td>
+                <td class="output-block output-block__title">Фамилия</td>
+                <td class="output-block output-block__title">Возраст</td>
+                <td class="output-block output-block__title">Наличие детей</td>
+                <td class="output-block output-block__title">Должность</td>
+                <td class="output-block output-block__title">Разряд</td>
+                <td class="output-block output-block__title">Дата принятия на работу</td>
+            </tr>
+            <!-- /.output-string -->
+            <tr class="output-string output-string-clone dNone">
+                <td class="output-block output-block__zero output-block__name"></td>
+                <td class="output-block output-block__zero output-block__secname"></td>
+                <td class="output-block output-block__zero output-block__age"></td>
+                <td class="output-block output-block__zero output-block__child"></td>
+                <td class="output-block output-block__zero output-block__role"></td>
+                <td class="output-block output-block__zero output-block__rank"></td>
+                <td class="output-block output-block__zero output-block__date"></td>
+            </tr>
+            <!-- /.output-string -->
+        </table>
+        <!-- /.output-table -->
+    </div>
+</body>
+</html>
