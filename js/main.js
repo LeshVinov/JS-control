@@ -9,10 +9,10 @@ const selectInput = document.querySelector('select')
 const orgInput = document.getElementById('form-text__org')
 const rankInput= document.getElementById('form-text__rank')
 const dateInput = document.getElementById('form-text__date')
-
 const table = document.querySelector('table')
 const trOld = document.querySelector('.output-string-clone')
 
+let dateDeletes = document.querySelectorAll('.delete-button')
 let dataItems = []
 
 let dataI = {
@@ -26,10 +26,8 @@ let dataI = {
     date: ''
 }
 const startFunc = function () {
-    dataBring()
-    // toLocalStorageFunc()
     fromLocalStorageFunc()
-    newTableStringFunc()
+    render() 
 }
 
 const dataBring = function () {
@@ -51,65 +49,88 @@ const dataBring = function () {
     rankInput.value = ""
     dateInput.value = ""
 
-    // dataItems.push(dataI)
+    dataItems.push(dataI)
 
-    localStorage.setItem("dataItems", JSON.stringify(dataItems))
-    if (dataItems.length === 0) {
-      localStorage.clear()
-    }
     if (dataItems.length >= 1) {
         localStorage.setItem("dataItems", JSON.stringify(dataItems))
     }
+    console.log(localStorage.dataItems);
+    render()
 }
-// const toLocalStorageFunc = function () {
-//     if (dataItems.length >= 1) {
-//         localStorage.setItem("dataI", JSON.stringify(dataI))
-//     }
-//     if (dataItems.length === 0) {
-//         localStorage.clear()
-//       }
-//     //   dataItems.push(dataI)
-// }
+
 const fromLocalStorageFunc = function () {
-    dataItems = localStorage.getItem("dataI")
-    ? JSON.parse(localStorage.getItem("dataI"))
-    : {}
-    console.log(dataI);
+    dataItems = JSON.parse(localStorage.getItem("dataItems")) || []
 }
-const newTableStringFunc = function () {
-
-
-    const newTr = trOld.cloneNode(true)
-    newTr.classList.remove('dNone')
-
-    const tdName = newTr.querySelector('.output-block__name')
-    const tdsecName = newTr.querySelector('.output-block__secname')
-    const tdAge = newTr.querySelector('.output-block__age')
-    const tdChild = newTr.querySelector('.output-block__child')
-    const tdRole = newTr.querySelector('.output-block__role')
-    const tdRank = newTr.querySelector('.output-block__rank')
-    const tdDate = newTr.querySelector('.output-block__date')
+const render = function () {
+    fromLocalStorageFunc()
+    table.innerHTML = `<tr class="output-string">
+        <td class="output-block output-block__title">Имя</td>
+        <td class="output-block output-block__title">Фамилия</td>
+        <td class="output-block output-block__title">Возраст</td>
+        <td class="output-block output-block__title">Наличие детей</td>
+        <td class="output-block output-block__title">Должность</td>
+        <td class="output-block output-block__title">Разряд</td>
+        <td class="output-block output-block__title">Дата принятия на работу</td>
+        <td class="output-block output-block__title"></td>
+    </tr>
+    <!-- /.output-string -->
+    <tr class="output-string output-string-clone dNone">
+        <td class="output-block output-block__zero output-block__name"></td>
+        <td class="output-block output-block__zero output-block__secname"></td>
+        <td class="output-block output-block__zero output-block__age"></td>
+        <td class="output-block output-block__zero output-block__child"></td>
+        <td class="output-block output-block__zero output-block__role"></td>
+        <td class="output-block output-block__zero output-block__rank"></td>
+        <td class="output-block output-block__zero output-block__date"></td>
+        <td class="output-block output-block__zero output-block-button "><button class="output-block__button delete-button">Удалить</button></td>
+    </tr>`
+    dataItems.forEach(dataI => {
+        const newTr = trOld.cloneNode(true)
+        newTr.classList.remove('dNone')
     
-    tdName.textContent = dataI.name
-    tdsecName.textContent = dataI.secName
-    tdAge.textContent = dataI.age
-    if (childInput.checked) {
-        tdChild.textContent = 'Есть'
-    } else {
-        tdChild.textContent = 'Нет'
-    }
-    tdRole.textContent = dataI.select
-    tdRank.textContent = dataI.rank
-    tdDate.textContent = dataI.date
+        const tdName = newTr.querySelector('.output-block__name')
+        const tdsecName = newTr.querySelector('.output-block__secname')
+        const tdAge = newTr.querySelector('.output-block__age')
+        const tdChild = newTr.querySelector('.output-block__child')
+        const tdRole = newTr.querySelector('.output-block__role')
+        const tdRank = newTr.querySelector('.output-block__rank')
+        const tdDate = newTr.querySelector('.output-block__date')
+        
+        tdName.textContent = dataI.name
+        tdsecName.textContent = dataI.secName
+        tdAge.textContent = dataI.age
+        if (childInput.checked) {
+            tdChild.textContent = 'Есть'
+        } else {
+            tdChild.textContent = 'Нет'
+        }
+        tdRole.textContent = dataI.select
+        tdRank.textContent = dataI.rank
+        tdDate.textContent = dataI.date
+    
+        table.append(newTr)
+    })
 
-    table.append(newTr)
+    dateDeletes = document.querySelectorAll('.delete-button')
+
+    dateDeletes.forEach((dataDelete, index) => {
+        dataDelete.addEventListener("click", function () {
+            dataItems.splice(index-1, 1)
+            localStorage.setItem("dataItems", JSON.stringify(dataItems))
+            if (dataItems.length === 0) {
+              localStorage.clear()
+            }
+            render()
+          })
+    })
 }
+
 
 
 submitButton.addEventListener('click', (e) => {
     e.preventDefault()
-    startFunc()
+    dataBring()
 })
 
-fromLocalStorageFunc()
+startFunc()
 

@@ -101,6 +101,18 @@ html {
     font-size: 1.3rem
 }
 
+.output-block-button {
+    padding: 0;
+}
+
+.output-block__button {
+    padding: 25px 50px;
+    border: none;
+    background-color: rgb(251, 135, 135);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
 .dNone {
     display: none
 }
